@@ -1,0 +1,28 @@
+<div *ngIf="user">
+	<h2 class="page-header">Hi {{user.username}}</h2>
+</div>
+
+<div *ngIf="!nverified">
+	<h2 class="page-header">Verified</h2>
+</div>
+<div *ngIf="nverified" class="jumbotron">
+	<div *ngIf="!phone_v" class="row">
+		<p> Lets verify your phone number</p>
+		<div [hidden]="showOTP"><a class="btn btn-primary" (click)="sendOTP()">Click to receive OTP</a></div>
+		<div [hidden]="!showOTP" style="float:left"><a class="btn btn-primary" (click)="verifyOTP()">Verify OTP</a></div>
+		<!--<input type="text" class="form-control" [(ngModel)]="enteredOTP" name="enteredOTP">-->
+		<div class="form-group col-xs-4" [hidden]="!showOTP">
+			<input type="text" class="form-control" [(ngModel)]="enteredOTP" name="enteredOTP" placeholder="Enter OTP">
+			<span class="help-block">Please enter the OTP received on your registered number</span>
+		</div>
+		<br/>
+		<hr/>
+	</div>
+	<div *ngIf="!email_v" class="row">
+		<p> Lets verify your email </p>
+		<div [hidden]="mailsent"><a class="btn btn-primary" (click)="sendMail()">Send verification mail</a></div>
+		<div class="form-group col-xs-4" [hidden]="!mailsent">
+			<span class="help-block">Click on the link in the email</span>
+		</div>
+	</div>
+</div>
