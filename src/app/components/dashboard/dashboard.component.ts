@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
 	showOTP: boolean;
 	enteredOTP: any;
 	mailsent: any;
+	phone_response: string;
+	retry: boolean;
 
 	constructor(
     	private authService: AuthService
@@ -27,6 +29,7 @@ export class DashboardComponent implements OnInit {
 			this.phone_v = ver.verification.phone_v;
 			this.email_v = ver.verification.email_v;
 			this.nverified = !ver.verification.verified;
+			console.log(this.nverified);
 		},
 		err => {
 			console.log(err);
@@ -60,6 +63,15 @@ export class DashboardComponent implements OnInit {
 		}
 		this.authService.verifyOTP(enteredOTP).subscribe(res => {
 			this.phone_v = res.status;
+			this.nverified = !(this.phone_v && this.email_v);
+			console.log(this.nverified);
+			this.phone_response = res.msg;
+			if(res.status){
+				this.retry = false;
+			}
+			else{
+				this.retry = true;
+			}
 		},
 		err => {
 			console.log(err);

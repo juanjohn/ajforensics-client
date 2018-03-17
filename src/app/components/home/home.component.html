@@ -1,7 +1,7 @@
 
-<div class="jumbotron text-center">
-	<h1>Forensics Consulting</h1>
-	<p class="lead">Welcome to AJForencis</p>
+<div class="jumbotron text-center" [ngStyle]="{'background-image': 'url(https://3.bp.blogspot.com/-uc07xycVt7M/Vv6U9wOkeyI/AAAAAAAAACw/5jb6UteyVS0QKS_RsXRa3HkkcU0MFv_Rg/s1600/adn-genoma.jpg)'}">
+	<h1 [ngStyle]="{'color':'white'}">Forensics Consulting</h1>
+	<p [ngStyle]="{'color':'white'}" class="lead">Welcome to AJForencis</p>
 	<div>
 		<a class="btn btn-primary" [routerLink]="['/register']">Register</a>
 		<a class="btn btn-default" [routerLink]="['/login']">Login</a>
@@ -10,16 +10,19 @@
 
 <div class="row">
   	<div class="col-md-4">
-    	<h3>Placeholder 1</h3>
-		<p>Some data can be put over here if required. This will be column 1, stay or delete</p>
-    	<!--<p>A rock solid Node.js/Express server using Mongoose to organize models and query the database</p>-->
+		<a [routerLink]="['/about']" style="text-decoration:none;color:#666"><h3>About me</h3>
+    	<p>Smt. Annamma John is the former Assistant Director of Forensic Science Laboratory, Kerala and a highly professional Forensic Scientist with hundreds of successful investigations to her credit. She has 30 plus years of years of experience in the field of forensic science during which she practiced forensic analysis as well as Scene of Crime investigation to which she has an excellent interest and an advanced knowledge in finding out the practices of criminals to escape detection. </p>
+		</a>
   	</div>
   	<div class="col-md-4">
-  		<h3>Placeholder 2</h3>
-    	<p>Some other data can be put over here as and hoe extra info is required. This will be column 2, stay or delete</p>
+		<a [routerLink]="['/about']" style="text-decoration:none;color:#666"><h3>Terms of Service</h3>
+    	<p>This site is meant for imparting confidential and high quality Forensic Science Services to professional and commercial organisations as well as to needy and interested public.</p><p>This site is meant for crime scene investigation assistance form all the relevant and frequently occurring areas of crime.
+		</p>
+		</a>
   	</div>
   	<div class="col-md-4">
-    	<h3>Placeholder 3</h3>
-    	<p>Login for accessing the data. You have to verify using phone number and email</p>
+		<a [routerLink]="['/about']" style="text-decoration:none;color:#666"><h3>Know more</h3>
+			<p>This site is meant for crime scene investigation assistance form all the relevant and frequently occurring areas of crime.</p><p> It can be availed by police office, practicing lawyers and all those for whom the information is relevant. Please go through the terms and conditions before you begin using this platform.</p>
+		</a>
   	</div>
 </div>

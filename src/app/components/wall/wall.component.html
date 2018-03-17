@@ -1,13 +1,22 @@
 <div *ngIf="user">
-	<h2 class="page-header">Hi {{user.username}}</h2>
-</div>
 
 <div *ngIf="!nverified">
-	<h2 class="page-header">Verified</h2>
+	<h4 class="page-header">Hi {{firstname}}</h4>
+
+	<p>Please be crisp and clear will asking. Avoid ambiguities. Take a moment to go through the terms and conditions to understand what kind of questions you can consult on.</p>
+	<form (submit)="onPostQuery()">
+	<textarea style="background-color:white;color:black;-webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
+		box-shadow: 1px 1px 1px 1px;
+	    border-radius: 5px;
+		width: 100%;" [(ngModel)]="query" name="query" rows="9">
+	</textarea>
+	<input type="submit" class="btn btn-primary" value="Post Query" style="float:right">
+	</form>
 </div>
 <div *ngIf="nverified" class="jumbotron">
 	<div *ngIf="!phone_v" class="row">
-		<p> Lets verify your phone number</p>
+		<p> Please verify your phone number</p>
 		<div [hidden]="showOTP"><a class="btn btn-primary" (click)="sendOTP()">Click to receive OTP</a></div>
 		<div [hidden]="!showOTP" style="float:left"><a class="btn btn-primary" (click)="verifyOTP()">Verify OTP</a></div>
 		<!--<input type="text" class="form-control" [(ngModel)]="enteredOTP" name="enteredOTP">-->
@@ -26,4 +35,5 @@
 			<span class="help-block">Click on the link in the email</span>
 		</div>
 	</div>
+</div>
 </div>

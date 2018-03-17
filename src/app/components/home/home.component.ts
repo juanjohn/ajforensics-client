@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
 		if (localStorage.getItem("user") != null) {
-			this.router.navigate(['/dashboard']);
+			this.router.navigate(['/wall']);
 		}
   }
 

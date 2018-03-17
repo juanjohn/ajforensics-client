@@ -11,20 +11,25 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { WallComponent } from './components/wall/wall.component';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
+import {QueryService} from './services/query.service';
 import { AuthGuard } from './guards/auth.guard';
 
-import {FlashMessagesModule} from 'angular2-flash-messages';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutComponent } from './components/about/about.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'wall', component: WallComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -36,7 +41,9 @@ const appRoutes: Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, QueryService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

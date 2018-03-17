@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
 	email: String;
 	password: String;
 	phone: String;
+	usernameAvailable: Boolean;
 
   	constructor(
   		private validateService: ValidateService,
@@ -27,6 +28,25 @@ export class RegisterComponent implements OnInit {
 
   	ngOnInit() {
   	}
+
+	onUsernameBlur(){
+		const username = {
+			username: this.username
+		}
+
+		this.authService.isAvailableUsername(username).subscribe(data =>{
+  			if(data.success){
+				this.usernameAvailable = true;
+  				return true;
+  			}
+  			else{
+				this.usernameAvailable = false;
+  				this.flashMessage.show("Username is already taken. Please try another!",{cssClass: 'alert-danger', timeout: 5000});
+  				return false;
+  			}
+  		});
+	}
+
   	onRegisterSubmit(){
   		const user = {
   			name: this.name,
@@ -37,17 +57,33 @@ export class RegisterComponent implements OnInit {
   		}
 
   		if(!this.validateService.validateRegister(user)){
-  			this.flashMessage.show("not filled",{cssClass: 'alert-danger', timeout: 3000});
+  			this.flashMessage.show("All fields are mandatory",{cssClass: 'alert-danger', timeout: 5000});
   			return false;
   		}
 
+		if(!this.validateService.validateName(user.name)){
+			this.flashMessage.show("Please enter valid Name (Only Alphabets, spaces and dots)",{cssClass: 'alert-danger', timeout: 5000});
+  			return false;
+		}
+
+		if(!this.validateService.validateUserName(user.username)){
+			this.flashMessage.show("Username must be alphanumeric and can include dots ",{cssClass: 'alert-danger', timeout: 5000});
+  			return false;
+		}
+
+		if(!this.validateService.validatePhone(user.phone)){
+			this.flashMessage.show("Please enter valid Phone number",{cssClass: 'alert-danger', timeout: 5000});
+  			return false;
+		}
+
   		if(!this.validateService.validateEmail(user.email)){
-  			this.flashMessage.show("Please use a valid Email",{cssClass: 'alert-danger', timeout: 3000});
+  			this.flashMessage.show("Please use a valid Email",{cssClass: 'alert-danger', timeout: 5000});
   			return false;
   		}
 
   		//Register User
   		this.authService.registerUser(user).subscribe(data =>{
+
   			if(data.success){
   				this.flashMessage.show("You are now registered",{cssClass: 'alert-success', timeout: 3000});
   				this.router.navigate(['/login']);
